@@ -1,3 +1,2 @@
-web: gunicorn Napp:app --log-file -
-
+web: gunicorn napp:app --log-file -
 
