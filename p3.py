@@ -6,7 +6,8 @@ def Count(dateval):
 	#else:
 		#dateval2 = request.form['datepick']
 		#dateval = dateval2.encode('utf-8')
-	connection = pyodbc.connect('Driver={SQL Server};Server=INQ69NBOCBPWMV1;Database=Test;Trusted_Connection=yes;')
+	conn_string = "dbname='deaup6nh066ma2' user='xibtwlbzmsbctw' password='PDfZm6nQ2bHXjNNPwrnEKFQGoa' host='ec2-54-217-202-110.eu-west-1.compute.amazonaws.com' port='5432'"
+	connection = psycopg2.connect(conn_string)
 	cursor = connection.cursor()
 	result2 = "SELECT * FROM View_1 where convert(date,Time_IST)=? and Region_CSSC='CSSC'" 
 	df2 = pd.read_sql_query(result2,connection, params=(dateval,))

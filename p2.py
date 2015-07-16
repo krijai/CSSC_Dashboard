@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
 from flask import Flask,render_template, request
-import pyodbc
+import psycopg2
 from functools import partial
 import pandas as pd
 import numpy as np
@@ -19,7 +19,8 @@ def value():
 
 @app.route('/P',methods=['GET','POST'])
 def index():
-	connection = pyodbc.connect('Driver={SQL Server};Server=INQ69NBOCBPWMV1;Database=Test;Trusted_Connection=yes;')
+	conn_string = "dbname='deaup6nh066ma2' user='xibtwlbzmsbctw' password='PDfZm6nQ2bHXjNNPwrnEKFQGoa' host='ec2-54-217-202-110.eu-west-1.compute.amazonaws.com' port='5432'"
+	connection = psycopg2.connect(conn_string)
 	cursor = connection.cursor()
 	if request.method=='POST':
 		dateval2 = request.form['datepick']
@@ -27,29 +28,29 @@ def index():
 	else:
 		dateval2 = request.form['datepick']
 		dateval = dateval2.encode('utf-8')
-	result = "SELECT * FROM OE_TAT where convert(date,Time_IST)=?"
-	df = pd.read_sql_query(result,connection, params=(dateval,))
-	Count(dateval)
+	result = "SELECT * FROM O where Time_IST=%s"
+	df = pd.read_sql_query(result,connection,params=(dateval,))
+	#Count(dateval)
 	if df.empty:
 		table = pandas.DataFrame({'No Data Available': ['']})
 	else:
-		table = pivot_table(df, values=["Document"], index=["Name"],columns=["TAT"], aggfunc=lambda x: len(x), margins=True, dropna=True)
+		table = pivot_table(df, values=["document"], index=["name"],columns=["tat"], aggfunc=lambda x: len(x), margins=True, dropna=True)
 		#table = pd.crosstab(df.Name,df.TAT).apply(lambda r: r/len(table), axis=1)
 		#table = table.apply(lambda x : x / x.len(), axis='index')
 		table = table.rename(columns = {'All':'Total'})
 		table = table.rename(index = {'All':'Total'})
-		table = table.div(table.Document["Total"], axis='index')
+		table = table.div(table.document["Total"], axis='index')
 		table = 100*np.round(table, 4)
 		table = table.fillna('')	
-	dir = 'C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file.html'
+	dir = 'C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html'
 	if os.path.isfile(dir):
-		os.remove('C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file.html')
+		os.remove('C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html')
 		
-		Data = table.to_html(open('C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file.html', 'w'))
+		Data = table.to_html(open('C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html', 'w'))
 	else:
 		
-		Data = table.to_html(open('C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file.html', 'w'))
-	os.chdir("C:\\Users\\TE236863\\Desktop\\proj\\templates")
+		Data = table.to_html(open('C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html', 'w'))
+	os.chdir("C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates")
 	
 	with open("ph1.html") as index:
 		index_text = index.read()
