@@ -22,19 +22,20 @@ def index():
 	conn_string = "dbname='deaup6nh066ma2' user='xibtwlbzmsbctw' password='PDfZm6nQ2bHXjNNPwrnEKFQGoa' host='ec2-54-217-202-110.eu-west-1.compute.amazonaws.com' port='5432'"
 	connection = psycopg2.connect(conn_string)
 	cursor = connection.cursor()
-	if request.method=='POST':
-		dateval2 = request.form['datepick']
-		dateval = dateval2.encode('utf-8')
-	else:
-		dateval2 = request.form['datepick']
-		dateval = dateval2.encode('utf-8')
-	result = "SELECT * FROM O where Time_IST=%s"
-	df = pd.read_sql_query(result,connection,params=(dateval,))
+	#if request.method=='POST':
+		#dateval2 = request.form['datepick']
+		#dateval = dateval2.encode('utf-8')
+	#else:
+		#dateval2 = request.form['datepick']
+		#dateval = dateval2.encode('utf-8')
+	cursor.execute("SELECT * FROM O ")
+        result = cursor.fetchall()
+	#df = pd.read_sql_query(result,connection,params=(dateval,))
 	#Count(dateval)
-	if df.empty:
-		return "nothing is here"
+	if result
+		return "Something is here"
 	else:
-		return "something is here"
+		return "Nothing is here"
 		
 if __name__ == "__main__":
 
