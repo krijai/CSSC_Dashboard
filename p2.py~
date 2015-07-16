@@ -2,12 +2,13 @@
 # -*- coding: latin-1 -*-
 from flask import Flask,render_template, request
 import psycopg2
+import urlparse
 from functools import partial
 import pandas as pd
 import numpy as np
 from pandas import *
 from xlrd import *
-import os.path
+import os.path,os, sys
 import shutil
 from decimal import Decimal
 
@@ -19,9 +20,18 @@ def value():
 
 @app.route('/connect',methods=['GET','POST'])
 def index():
-	conn_string = "dbname='deaup6nh066ma2' user='xibtwlbzmsbctw' password='PDfZm6nQ2bHXjNNPwrnEKFQGoa' host='ec2-54-217-202-110.eu-west-1.compute.amazonaws.com' port='5432'"
-	connection = psycopg2.connect(conn_string)
-	cursor = connection.cursor()
+	#conn_string = "dbname='deaup6nh066ma2' user='xibtwlbzmsbctw' password='PDfZm6nQ2bHXjNNPwrnEKFQGoa' host='ec2-54-217-202-110.eu-#west-1.compute.amazonaws.com' port='5432'"
+	#connection = psycopg2.connect(conn_string)
+        urlparse.uses_netloc.append("postgres")
+	url = urlparse.urlparse(os.environ["DATABASE_URL"])
+	conn = psycopg2.connect(
+		database=url.path[1:],
+		user=url.username,
+		password=url.password,
+		host=url.hostname,
+		port=url.port
+	)
+	cursor = conn.cursor()
 	#if request.method=='POST':
 		#dateval2 = request.form['datepick']
 		#dateval = dateval2.encode('utf-8')

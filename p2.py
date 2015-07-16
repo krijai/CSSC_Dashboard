@@ -14,11 +14,11 @@ from decimal import Decimal
 
 
 app = Flask(__name__)
-@app.route('/', methods=['GET','POST'])
+@app.route('/tt', methods=['GET','POST'])
 def value():
 	return render_template('layout.html')
 
-@app.route('/connect',methods=['GET','POST'])
+@app.route('/',methods=['GET','POST'])
 def index():
 	#conn_string = "dbname='deaup6nh066ma2' user='xibtwlbzmsbctw' password='PDfZm6nQ2bHXjNNPwrnEKFQGoa' host='ec2-54-217-202-110.eu-#west-1.compute.amazonaws.com' port='5432'"
 	#connection = psycopg2.connect(conn_string)
