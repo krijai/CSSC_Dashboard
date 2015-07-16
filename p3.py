@@ -18,13 +18,13 @@ def Count(dateval):
 		table2 = table2.fillna('')
 		table2 = table2.rename(columns = {'All':'Total'})
 		table2 = table2.rename(index = {'All':'Total'})
-	dir = 'C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file2.html'
+	dir = '/templates/my_file2.html'
 	if os.path.isfile(dir):
-		os.remove('C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file2.html')
-		Data2 = table2.to_html(open('C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file2.html', 'w'))
+		os.remove('/templates/my_file2.html')
+		Data2 = table2.to_html(open('/templates/my_file2.html', 'w'))
 	else:
-		Data2 = table2.to_html(open('C:\\Users\\TE236863\\Desktop\\proj\\templates\\my_file2.html', 'w'))
-	os.chdir("C:\\Users\\TE236863\\Desktop\\proj\\templates")
+		Data2 = table2.to_html(open('/templates/my_file2.html', 'w'))
+	os.chdir("/templates/")
 	
 	#with open("ph1.html") as index:
 		#index_text = index.read()

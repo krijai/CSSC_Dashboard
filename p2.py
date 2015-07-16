@@ -50,7 +50,7 @@ def index():
 	else:
 		
 		Data = table.to_html(open('/CSSC_Dashboard/templates/my_file.html', 'w'))
-	os.chdir("/CSSC_Dashboard/templates")
+	os.chdir("/CSSC_Dashboard/templates/")
 	
 	with open("ph1.html") as index:
 		index_text = index.read()
