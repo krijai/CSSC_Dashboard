@@ -32,9 +32,9 @@ def index():
 	df = pd.read_sql_query(result,connection,params=(dateval,))
 	#Count(dateval)
 	if df.empty:
-		table = pandas.DataFrame({'No Data Available': ['']})
+		return "nothing is here"
 	else:
-		table = pivot_table(df, values=["document"], index=["name"],columns=["tat"], aggfunc=lambda x: len(x), margins=True, dropna=True)
+		return "something is here"
 		
 if __name__ == "__main__":
 

@@ -35,37 +35,7 @@ def index():
 		table = pandas.DataFrame({'No Data Available': ['']})
 	else:
 		table = pivot_table(df, values=["document"], index=["name"],columns=["tat"], aggfunc=lambda x: len(x), margins=True, dropna=True)
-		#table = pd.crosstab(df.Name,df.TAT).apply(lambda r: r/len(table), axis=1)
-		#table = table.apply(lambda x : x / x.len(), axis='index')
-		table = table.rename(columns = {'All':'Total'})
-		table = table.rename(index = {'All':'Total'})
-		table = table.div(table.document["Total"], axis='index')
-		table = 100*np.round(table, 4)
-		table = table.fillna('')	
-	dir = '/CSSC_Dashboard/templates/my_file.html'
-	if os.path.isfile(dir):
-		os.remove('/CSSC_Dashboard/templates/my_file.html')
 		
-		Data = table.to_html(open('/CSSC_Dashboard/templates/my_file.html', 'w'))
-	else:
-		
-		Data = table.to_html(open('/CSSC_Dashboard/templates/my_file.html', 'w'))
-	os.chdir("/CSSC_Dashboard/templates/")
-	
-	with open("ph1.html") as index:
-		index_text = index.read()
-	with open("my_file.html") as menu:
-		menu_text = menu.read()
-		# I called it index2 so it doesn't overwrite... you can change that
-	with open("my_file2.html") as menu2:
-		menu_text2 = menu2.read()	
-	with open("index2.html", "w") as index2:
-		index2.write(index_text.replace('<!-- Insert Menu here -->', menu_text))
-	with open("index2.html") as index3:
-		index_text2 = index3.read()
-	with open("index2.html", "w") as index2:	
-		index2.write(index_text2.replace('<!-- EOD Count -->', menu_text2))	
-	return render_template('index2.html')
 if __name__ == "__main__":
 
 	app.run(debug=True)
