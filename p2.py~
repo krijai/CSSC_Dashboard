@@ -10,14 +10,14 @@ from xlrd import *
 import os.path
 import shutil
 from decimal import Decimal
-from p3 import *
+
 
 app = Flask(__name__)
 @app.route('/', methods=['GET','POST'])
 def value():
 	return render_template('layout.html')
 
-@app.route('/P',methods=['GET','POST'])
+@app.route('/connect',methods=['GET','POST'])
 def index():
 	conn_string = "dbname='deaup6nh066ma2' user='xibtwlbzmsbctw' password='PDfZm6nQ2bHXjNNPwrnEKFQGoa' host='ec2-54-217-202-110.eu-west-1.compute.amazonaws.com' port='5432'"
 	connection = psycopg2.connect(conn_string)
