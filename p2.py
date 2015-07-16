@@ -67,4 +67,8 @@ def index():
 		index2.write(index_text2.replace('<!-- EOD Count -->', menu_text2))	
 	return render_template('index2.html')
 if __name__ == "__main__":
+<<<<<<< HEAD
 	app.run(debug=True)
+=======
+	app.run(debug=True)
+>>>>>>> 73d591d98383c5bbdc3ebd5d5d2c3896578990a5
