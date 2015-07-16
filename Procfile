@@ -1,2 +1,4 @@
-web: gunicorn --pythonpath /CSSC_Dashboard p2:app --log-file -
+
+
+web: gunicorn  p2:app --log-file -
 
