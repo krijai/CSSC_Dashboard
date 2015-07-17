@@ -30,21 +30,28 @@ body {
 		font-weight: bold
 		}
 		
-		
 
+
+.radio_button{
+margin-left:-150px;
+height: 49px;
+width: 88px;
+font-size:21px
+}
+
+.order_buttons{
+margin-right:100px;
+margin-top:-100px;
+}
+
+.order_buttons .btn{
+width:100px;
+}
 
 .m_clor{
 color:blue !important;
 }
 
-<!--table,td, th {
-    border : 2px solid black;
-}
-th {
-    background-color: blue;
-    color: white;
-}
- -->
  table.tab th {
  text-align:center;
  }

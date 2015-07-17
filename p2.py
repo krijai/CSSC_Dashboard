@@ -30,6 +30,7 @@ def index():
 		dateval = dateval2.encode('utf-8')
 	result = "SELECT * FROM O where Time_IST=%s"
 	df = pd.read_sql_query(result,connection,params=(dateval,))
+	sdate = dateval 
 	#Count(dateval)
 	if df.empty:
 		table = pandas.DataFrame({'No Data Available': ['']})
@@ -39,6 +40,9 @@ def index():
 		#table = table.apply(lambda x : x / x.len(), axis='index')
 		table = table.rename(columns = {'All':'Total'})
 		table = table.rename(index = {'All':'Total'})
+		table = table.rename(index = {'tat':'TAT'})
+		table = table.rename(index = {'name':'NAME'})
+		table = table.rename(columns = {'document':'CSSC TAT Report'})
 		table = table.div(table.document["Total"], axis='index')
 		table = 100*np.round(table, 4)
 		table = table.fillna('')	
