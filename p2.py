@@ -10,7 +10,7 @@ from xlrd import *
 import os.path
 import shutil
 from decimal import Decimal
-from p3 import *
+#from p3 import *
 
 app = Flask(__name__)
 @app.route('/', methods=['GET','POST'])
@@ -42,15 +42,15 @@ def index():
 		table = table.div(table.document["Total"], axis='index')
 		table = 100*np.round(table, 4)
 		table = table.fillna('')	
-	dir = 'C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html'
+	dir = '/app/templates/my_file.html'
 	if os.path.isfile(dir):
-		os.remove('C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html')
+		os.remove('/app/templates/my_file.html')
 		
-		Data = table.to_html(open('C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html', 'w'))
+		Data = table.to_html(open('/app/templates/my_file.html', 'w'))
 	else:
 		
-		Data = table.to_html(open('C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates\\my_file.html', 'w'))
-	os.chdir("C:\\Users\\TE236863\\Desktop\\App\\CSSC_Dashboard\\templates")
+		Data = table.to_html(open('/app/templates/my_file.html', 'w'))
+	os.chdir("/app/templates/")
 	
 	with open("ph1.html") as index:
 		index_text = index.read()
