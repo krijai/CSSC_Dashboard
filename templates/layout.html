@@ -44,7 +44,7 @@ $('#ss').click(function(){
 
   <header>
     <div class="container">
-    <h1 class="logo">EMEA CRM</h1>
+    <h1 class="logo"><a href="http://cssc.herokuapp.com">EMEA CRM</a></h1>
     </div>
   </header>
   
@@ -84,12 +84,12 @@ $('#ss').click(function(){
     </div>
   </div>
   <form id="submitdate" name="submitdate" action="/P" method="POST">
-  <p ><b>Date:</b> <input type="text" id="datepick" name="datepick" placeholder="Select Date" class=" form-control" style="width:9% ; margin-top: -2%;
+  <p ><b>Date:</b> <input type="text" id="datepick" name="datepick" placeholder="{{dateval}}" class=" form-control" style="width:9% ; margin-top: -2%;
   margin-left: 4%;color:rgb(31, 26, 223);"></p>
     </form>
   </nav>
   <div class="btn-group order_buttons" data-toggle="buttons-radio" style="float:right">
- <p><button onclick="location.href="http://localhost:5000/p" type="button" class="btn btn-info" id="bcount">Count</button></p>
+ <p><button onclick="location.href="/p" type="button" class="btn btn-info" id="bcount">Count</button></p>
   <p><button type="button" class="btn btn-info">TAT</button></p>
   <p><button type="button" class="btn btn-info" >Trend</button></p>
 </div>
